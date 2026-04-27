@@ -1,0 +1,30 @@
+name: Test Automation
+
+on:
+    push:
+        branches:[main]
+
+jobs:
+    test-job:
+        runs-on: ubuntu-latest
+
+        defualts:
+            run:
+                working-directory: backend
+            
+        with:
+            node-version: 24.x
+        
+        steps:
+
+            - name: Checkout Repo 
+              uses: actions/checkout@v4
+            
+            - name: Setup Node
+              uses: actions/setup-node@v4
+            
+            - name: Install Dependencies
+              run: npm install
+            
+            - name: Run test
+              run: npm test
